@@ -17,6 +17,13 @@
       {{- partial "post_meta.html" . -}}
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
+
+      {{ if and (.Params.canonicalURL) (.Params.showCanonicalLink ) -}}
+      {{ $url := urls.Parse .Params.canonicalURL }}
+      <span class="post-canonical-link">
+        Originally published at <a href="{{ trim .Params.canonicalURL " " }}" target="_blank" rel="noopener noreferrer">{{ $url.Host }}</a>
+      </span>
+      {{- end }}
     </div>
     {{- end }}
   </header>
