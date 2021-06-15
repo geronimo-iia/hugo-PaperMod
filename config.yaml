@@ -1,0 +1,19 @@
+module:
+  hugoVersion:
+    # We don't need extended (no sass)
+    extended: false
+    # We don't have a max version
+    max: ''
+    # We do have a min though.
+    min: '0.64.0'
+  mounts:
+    - source: assets
+      target: themes/hugo-PaperMod/assets
+    - source: i18n
+      target: themes/hugo-PaperMod/i18n
+    - source: images
+      target: themes/hugo-PaperMod/images
+    - source: layouts
+      target: themes/hugo-PaperMod/layouts
+    - source: theme.toml
+      target: themes/hugo-PaperMod/theme.toml
