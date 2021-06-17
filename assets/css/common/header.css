@@ -12,6 +12,10 @@
     display: block;
 }
 
+.nav svg {
+    margin-top: 16px;
+}
+
 .logo,
 #menu {
     display: flex;

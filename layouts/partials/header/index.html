@@ -1,0 +1,11 @@
+{{ partialCached "header/theme_toggle.html" . }}
+{{ partialCached "header/noscript.html" . }}
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            {{ partialCached "header/logo.html" . }}
+            {{ partial "header/logo_switches.html" . }}
+        </div>
+        {{ partial "header/menu.html" . }}
+    </nav>
+</header>
