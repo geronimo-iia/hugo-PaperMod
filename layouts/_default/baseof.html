@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
-
 <head>
-    {{- partial "head.html" . }}
+    {{- partial "head/index.html" . }}
 </head>
-
 <body class="
 {{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
 {{- print "list" -}}
@@ -13,12 +11,12 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
-    {{- partialCached "header.html" . .Page -}}
+    {{- partialCached "header/index.html" . .Page -}}
     <main class="main">
         {{- block "main" . }}{{ end }}
     </main>
-    {{ partialCached "footer.html" . .Layout .Kind -}}
-    {{ partial "script.html" . }}
+    {{ partialCached "footer/index.html" . .Layout .Kind -}}
+    {{ partial "script/index.html" . }}
 </body>
 
 </html>

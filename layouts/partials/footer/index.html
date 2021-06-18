@@ -1,0 +1,5 @@
+{{ partialCached "footer/info.html" . }}
+{{ partialCached "footer/scroll_top.html" . }}
+{{ if templates.Exists "partials/footer/extended.html" }}
+  {{ partial "footer/extended.html" . }}
+{{ end }}

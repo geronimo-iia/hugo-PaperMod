@@ -6,7 +6,7 @@ function initializeMenu() {
     menu.onscroll = function () {
         localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
-    
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -40,7 +40,7 @@ function scrollToTop() {
     };
 }
 
-function themeToggle() {
+function enableThemeToggle() {
     document.getElementById("theme-toggle").addEventListener("click", () => {
         if (document.body.className.includes("dark")) {
             document.body.classList.remove('dark');
@@ -100,9 +100,42 @@ function showCodeCopyButtons() {
     });
 }
 
+function initializeTheme() {
+
+    if (params.themeToggle) {
+        if (params.defaultTheme === 'light') {
+            /* theme is light */
+            if (localStorage.getItem("pref-theme") === "dark") {
+                document.body.classList.add('dark');
+            }
+
+        } else if (params.defaultTheme === 'dark') {
+            /* theme is dark */
+            if (localStorage.getItem("pref-theme") === "light") {
+                document.body.classList.remove('dark')
+            }
+        } else {
+            // theme is auto
+            if (localStorage.getItem("pref-theme") === "dark") {
+                document.body.classList.add('dark');
+            } else if (localStorage.getItem("pref-theme") === "light") {
+                document.body.classList.remove('dark')
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark');
+            }
+        }
+        enableThemeToggle();
+    } else {
+        /* theme-toggle is disabled and theme is auto */
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    }
+}
+
 initializeMenu();
 if (params.scrollToTop) scrollToTop();
-if (params.themeToggle) themeToggle();
+initializeTheme();
 if (params.showCodeCopyButtons) showCodeCopyButtons();
 
 

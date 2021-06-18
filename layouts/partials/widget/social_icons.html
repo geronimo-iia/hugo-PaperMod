@@ -1,0 +1,10 @@
+<div class="social-icons">
+    {{- range . }}
+    <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name | title }}">
+        {{- $icon_name := ( trim .name " " | lower )}}
+        {{- with resources.Get (print "icons/social/" $icon_name ".svg")  -}}
+        {{- .Content | safeHTML -}}
+        {{- end -}}
+    </a>
+    {{- end }}
+</div>

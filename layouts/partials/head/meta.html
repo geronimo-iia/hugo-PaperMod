@@ -1,0 +1,22 @@
+{{- /* Meta */}}
+{{- if .IsHome }}
+{{ with .Site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}" />{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ if .Params.keywords -}}
+    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
+    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}" />
+{{- end }}
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if .IsPage}}
+    {{- .Summary | default (printf "%s - %s" .Title  .Site.Title) }}{{- else }}
+    {{- with .Site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="author" content="{{ (partial "widget/author.html" . ) }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}" />
+{{- if .Site.Params.analytics.google.SiteVerificationTag }}
+<meta name="google-site-verification" content="{{ .Site.Params.analytics.google.SiteVerificationTag }}" />
+{{- end }}
+{{- if .Site.Params.analytics.yandex.SiteVerificationTag }}
+<meta name="yandex-verification" content="{{ .Site.Params.analytics.yandex.SiteVerificationTag }}" />
+{{- end }}
+{{- if .Site.Params.analytics.bing.SiteVerificationTag }}
+<meta name="msvalidate.01" content="{{ .Site.Params.analytics.bing.SiteVerificationTag }}" />
+{{- end }}
